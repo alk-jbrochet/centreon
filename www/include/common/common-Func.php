@@ -167,30 +167,22 @@ function initSmartyTpl($path = null, $tpl = null, $subDir = null)
         return;
     }
     $tpl->template_dir = $path . $subDir;
-    $tpl->compile_dir = "../GPL_LIB/SmartyCache/compile";
-    $tpl->config_dir = "../GPL_LIB/SmartyCache/config";
-    $tpl->cache_dir = "../GPL_LIB/SmartyCache/cache";
-    $tpl->plugins_dir[] = "../GPL_LIB/smarty-plugins";
+    $tpl->compile_dir = __DIR__ . "/../../../GPL_LIB/SmartyCache/compile";
+    $tpl->config_dir = __DIR__ . "/../../../GPL_LIB/SmartyCache/config";
+    $tpl->cache_dir = __DIR__ . "/../../../GPL_LIB/SmartyCache/cache";
+    $tpl->plugins_dir[] = __DIR__ . "/../../../GPL_LIB/smarty-plugins";
     $tpl->caching = 0;
     $tpl->compile_check = true;
     $tpl->force_compile = true;
     return $tpl;
 }
 
+/**
+ * This function is mainly used in widgets
+ */
 function initSmartyTplForPopup($path = null, $tpl = null, $subDir = null, $centreon_path = null)
 {
-    if (!$tpl) {
-        return;
-    }
-    $tpl->template_dir = $path . $subDir;
-    $tpl->compile_dir = _CENTREON_PATH_ . "/GPL_LIB/SmartyCache/compile";
-    $tpl->config_dir = _CENTREON_PATH_ . "/GPL_LIB/SmartyCache/config";
-    $tpl->cache_dir = _CENTREON_PATH_ . "/GPL_LIB/SmartyCache/cache";
-    $tpl->plugins_dir[] = _CENTREON_PATH_ . "/GPL_LIB/smarty-plugins";
-    $tpl->caching = 0;
-    $tpl->compile_check = true;
-    $tpl->force_compile = true;
-    return $tpl;
+    return initSmartyTpl($path, $tpl, $subDir);
 }
 
 /*
